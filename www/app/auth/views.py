@@ -3,6 +3,7 @@ from flask import render_template, request
 
 import login as login
 import passwords as passwords
+from app.users import users
 
 @app.route("/signin/", methods=['GET', 'POST'])
 def signin():
@@ -31,9 +32,7 @@ def signin():
         #
 
         ## get the user by email address
-        ## user = users.get_user_by_email(email)
-        ## this is a fake user
-        user = {"id":1, "username":"test", "email":email, "password":"test", "deleted":0}
+        user = users.get_user_by_email(email)
 
         if (not user):
             error = {"error_nouser":1}

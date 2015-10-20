@@ -3,12 +3,7 @@ from flask import render_template
 
 @app.route("/")
 def home():
-
-    ### testing the connectiob to the DB
-    app.db.execute("SELECT * FROM test")
-    data = app.db.fetchall()
-
-    return render_template('page_home.html', data=data)
+    return render_template('page_home.html')
 
 @app.route("/about/")
 def about():
