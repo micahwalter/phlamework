@@ -3,4 +3,9 @@
 
 {% block content %}
 <h1>Hello World!</h1>
+
+{% for item in data %}
+<li>{{ item }}</li>
+{% endfor %}
+
 {% endblock %}
