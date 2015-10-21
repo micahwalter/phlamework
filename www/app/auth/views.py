@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, redirect
 
 import login as login
 import passwords as passwords
@@ -9,7 +9,8 @@ from app.users import users
 def signin():
 
     auth_cookie = request.cookies.get(app.cfg['auth_cookie_name'])
-    login.ensure_loggedout(auth_cookie)
+    if (login.check_login(auth_cookie)):
+        return redirect("/")
 
     #
     # try and sign in

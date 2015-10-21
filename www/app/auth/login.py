@@ -1,4 +1,4 @@
-from flask import abort, redirect, make_response, request
+from flask import abort, redirect, make_response, request, g
 from app import app
 import string
 
@@ -24,8 +24,8 @@ def check_login(auth_cookie):
         return 0
 
     if not auth_cookie:
-        if 'user' in app.cfg:
-            del app.cfg['user']
+        if 'user' in g:
+            del g.user
         return 0
 
     auth_cookie = crypto.decrypt(auth_cookie, app.cfg['crypto_cookie_secret'])
@@ -49,7 +49,7 @@ def check_login(auth_cookie):
     if (user['password'] != password):
         return 0
 
-    app.cfg['user'] = user
+    g.user = user
 
     return 1
 
@@ -74,11 +74,7 @@ def generate_auth_cookie(user):
 
 ######################################################
 def get_cookie(name):
-    #cookie = request.cookies.get('a')
-    #print cookie
-
-    #cookie = request.cookies.get(name)
-    #print cookie
+    #### this isn't necessary since we have to get the cookie at the beginning of each request
     return 0
 
 ######################################################

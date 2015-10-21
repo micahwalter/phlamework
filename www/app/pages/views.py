@@ -5,14 +5,7 @@ from app.auth import login
 
 @app.route("/")
 def home():
-    auth_cookie = request.cookies.get(app.cfg['auth_cookie_name'])
-
-    if (login.check_login(auth_cookie)):
-        user = app.cfg['user']
-    else:
-        user = 0
-
-    return render_template('page_home.html', user=user)
+    return render_template('page_home.html')
 
 @app.route("/about/")
 def about():

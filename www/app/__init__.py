@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import MySQLdb
 import MySQLdb.cursors
 
@@ -23,9 +23,15 @@ database = MySQLdb.connect(
 
 app.db = database.cursor()
 
+from app.auth import login
+
+@app.before_request
+def init():
+    auth_cookie = request.cookies.get(app.cfg['auth_cookie_name'])
+    login.check_login(auth_cookie)
+
+
+
 ## import all the things...
 from pages import views
 from auth import views
-
-#from auth import login
-#login.check_login()
