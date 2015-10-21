@@ -1,15 +1,15 @@
+import bcrypt
+
+######################################################
 def encrypt_password(password):
+    hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+    return hashed
 
-    ### todo ... encrypt the thing... use bcrypt
-    return password
-
-
+######################################################
 def validate_password(password, enc_password):
+    return enc_password == bcrypt.hashpw(password.encode('utf-8'), enc_password)
 
-    test = encrypt_password(password)
-    return test == enc_password
-
-
+######################################################
 def validate_password_for_user(password, user):
 
     return validate_password(password, user['password'])

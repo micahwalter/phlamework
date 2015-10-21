@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet
-import hashlib, base64
+import base64
 
 ######################################################
 def encrypt(data, key):
