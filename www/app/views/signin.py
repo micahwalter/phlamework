@@ -1,9 +1,9 @@
 from app import app
 from flask import render_template, request, redirect
 
-import login as login
-import passwords as passwords
-from app.users import users
+from app.include import login
+from app.include import passwords
+from app.include import users
 
 @app.route("/signin/", methods=['GET', 'POST'])
 def signin():

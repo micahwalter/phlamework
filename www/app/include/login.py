@@ -3,7 +3,7 @@ from app import app
 import string
 
 import crypto as crypto
-from app.users import users
+from app.include import users
 
 ######################################################
 def ensure_loggedin():

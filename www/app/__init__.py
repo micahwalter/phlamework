@@ -30,7 +30,7 @@ app.db = database.cursor()
 app.cfg['enable_feature_signin'] = 1;
 
 ### Do these things on every page load
-from app.auth import login
+from app.include import login
 
 @app.before_request
 def init():
@@ -38,5 +38,6 @@ def init():
     login.check_login(auth_cookie)
 
 ## import all the views...
-from pages import views
-from auth import views
+from views import home
+from views import about
+from views import signin
