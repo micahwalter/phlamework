@@ -1,6 +1,6 @@
 def encrypt_password(password):
 
-    ### todo ... encrypt the thing...
+    ### todo ... encrypt the thing... use bcrypt
     return password
 
 

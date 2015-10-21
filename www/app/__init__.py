@@ -7,22 +7,12 @@ app.debug = True
 
 ## global config stuff ...
 app.cfg = {}
-app.cfg['user'] = 1
+
 app.cfg['auth_cookie_name'] = 'a'
-app.cfg['crypto_cookie_secret'] = 'S33KRET'
+app.cfg['crypto_cookie_secret'] = 'XWvXBujpxWtm9YYl3Kt2xo4rqp_wEXKB8GI1CxZJ4wg='
 app.cfg['auth_cookie_domain'] = 'localhost'
 
-#mysql = MySQL()
-
-# MySQL config
-#app.config['MYSQL_DATABASE_USER'] = 'root'
-#app.config['MYSQL_DATABASE_PASSWORD'] = ''
-#app.config['MYSQL_DATABASE_DB'] = 'phlamework'
-#app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-#mysql.init_app(app)
-
-# MySQL connection
-#app.db = mysql.connect().cursor()
+app.cfg['enable_feature_signin'] = 1;
 
 database = MySQLdb.connect(
     host = "localhost",
@@ -31,9 +21,11 @@ database = MySQLdb.connect(
     db = "phlamework",
     cursorclass=MySQLdb.cursors.DictCursor)
 
-c = database.cursor()
-app.db = c
+app.db = database.cursor()
 
 ## import all the things...
 from pages import views
 from auth import views
+
+#from auth import login
+#login.check_login()

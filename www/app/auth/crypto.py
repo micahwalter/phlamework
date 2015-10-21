@@ -1,15 +1,18 @@
+from cryptography.fernet import Fernet
 import hashlib, base64
 
 ######################################################
 def encrypt(data, key):
 
-    key = hashlib.sha256(key)
+    f = Fernet(key)
+    token = f.encrypt(data)
 
-    return base64.b64encode(data)
+    return base64.b64encode(token)
 
 ######################################################
 def decrypt(enc_b64, key):
 
-	dec = base64.b64decode(enc_b64);
-	# $dec = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $key, $enc, MCRYPT_MODE_ECB);
-	return dec
+    f = Fernet(key)
+    token = base64.b64decode(enc_b64);
+
+    return f.decrypt(token)

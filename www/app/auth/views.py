@@ -8,7 +8,8 @@ from app.users import users
 @app.route("/signin/", methods=['GET', 'POST'])
 def signin():
 
-    login.ensure_loggedout()
+    auth_cookie = request.cookies.get(app.cfg['auth_cookie_name'])
+    login.ensure_loggedout(auth_cookie)
 
     #
     # try and sign in
