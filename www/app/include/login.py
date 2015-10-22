@@ -6,16 +6,10 @@ import crypto as crypto
 from app.include import users
 
 ######################################################
-def ensure_loggedin():
-    if 'user' in app.cfg:
-        return 1
-    else:
-        return redirect("/signin/")
-
-######################################################
 def ensure_loggedout(auth_cookie):
-    check_login(auth_cookie)
-    return 0
+    if not check_login(auth_cookie):
+        return do_logout()
+    return 1
 
 ######################################################
 def check_login(auth_cookie):
@@ -65,7 +59,14 @@ def do_login(user):
 
 ######################################################
 def do_logout():
-    return 0
+
+    if 'user' in g:
+        del g.user
+
+    resp = make_response(redirect("/"))
+    resp.set_cookie(app.cfg['auth_cookie_name'], "", expires=0)
+
+    return resp
 
 ######################################################
 def generate_auth_cookie(user):
