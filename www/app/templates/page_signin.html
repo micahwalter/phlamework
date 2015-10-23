@@ -3,14 +3,14 @@
 
 {% block content %}
 
-{% if error %}
-{% if error.error_missing %}Please enter an email address and password{% endif %}
-{% if error.error_nouser %}A user with that email address does not exist{% endif %}
-{% if error.error_deleted %}The user associated with that email address has been deleted{% endif %}
-{% if error.error_password %}Please enter a valid password{% endif %}
-{% endif %}
-
 <div class="container">
+
+	{% if error %}
+	{% if error.error_missing %}Please enter an email address and password{% endif %}
+	{% if error.error_nouser %}A user with that email address does not exist{% endif %}
+	{% if error.error_deleted %}The user associated with that email address has been deleted{% endif %}
+	{% if error.error_password %}Please enter a valid password{% endif %}
+	{% endif %}
 
 	<form action="/signin/" method="post" accept-encoding="UTF-8" class="form-horizontal">
 		<input type="hidden" name="signin" value="1" />

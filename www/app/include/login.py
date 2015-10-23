@@ -1,6 +1,7 @@
 from flask import abort, redirect, make_response, request, g
 from app import app
 import string
+import json
 
 import crypto as crypto
 from app.include import users
@@ -43,7 +44,7 @@ def check_login(auth_cookie):
     if (user['password'] != password):
         return 0
 
-    g.user = user
+    g.user = json.dumps(user, indent=4)
 
     return 1
 
