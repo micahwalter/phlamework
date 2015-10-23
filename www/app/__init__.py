@@ -24,10 +24,11 @@ database = MySQLdb.connect(
     cursorclass=MySQLdb.cursors.DictCursor)
 
 ### Bootstrap the DB connection
-app.db = database.cursor()
+app.db = database
 
 ### Feature flags
-app.cfg['enable_feature_signin'] = 1;
+app.cfg['enable_feature_signin'] = 1
+app.cfg['enable_feature_signup'] = 1
 
 ### Do these things on every page load
 from app.include import login
@@ -44,3 +45,4 @@ from views import home
 from views import about
 from views import signin
 from views import signout
+from views import signup

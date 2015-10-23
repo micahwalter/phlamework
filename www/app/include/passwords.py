@@ -2,7 +2,7 @@ import bcrypt
 
 ######################################################
 def encrypt_password(password):
-    hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     return hashed
 
 ######################################################
